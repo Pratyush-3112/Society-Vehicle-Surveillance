@@ -1,0 +1,30 @@
+# Environments
+parking_env/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Temporary files and outputs
+result_video.mp4
+temp_frame.jpg
+tempCodeRunnerFile.py
+
+# Database
+parking.db
+*.sqlite3
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
