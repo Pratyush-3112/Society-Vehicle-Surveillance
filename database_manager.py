@@ -160,10 +160,14 @@ def log_exit(plate_number):
     cursor.execute("""
         UPDATE Log
         SET timestamp_out = ?, status = 'Exited'
-        WHERE plate_number = ?
-        AND timestamp_out IS NULL
-        ORDER BY log_id DESC
-        LIMIT 1
+        WHERE log_id = (
+            SELECT log_id
+            FROM Log
+            WHERE plate_number = ?
+            AND timestamp_out IS NULL
+            ORDER BY log_id DESC
+            LIMIT 1
+        )
     """, (timestamp_out, plate_number))
 
     conn.commit()
