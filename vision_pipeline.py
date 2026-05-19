@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from inference_sdk import InferenceHTTPClient
 import easyocr
 import cv2
@@ -5,10 +7,13 @@ import csv
 import re
 from datetime import datetime
 
+# Load environment variables
+load_dotenv()
+
 # ── Setup ──────────────────────────────────────────
 client = InferenceHTTPClient(
     api_url="https://serverless.roboflow.com",
-    api_key="N5PvCyk9suYtZhpjktnz"
+    api_key=os.getenv("ROBOFLOW_API_KEY")
 )
 reader = easyocr.Reader(['en'])
 
@@ -152,7 +157,7 @@ if __name__ == "__main__":
         print("📹 Using 'gate_video.mp4' for testing...")
     else:
         video_source = 0  # 0 usually corresponds to the default webcam
-        print("⚠️ 'gate_video.mp4' not found. Falling back to Live Webcam (0) for testing...")
-        print("💡 Hint: You can hold up your phone displaying a license plate to the camera!")
+        print(" 'gate_video.mp4' not found. Falling back to Live Webcam (0) for testing...")
+        print(" Hint: You can hold up your phone displaying a license plate to the camera!")
         
     process_video(video_source)
